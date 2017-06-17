@@ -10,7 +10,6 @@ end
 client = Octokit::Client.new(:access_token => ENV['GHE_TOKEN'])
 
 db = SQLite3::Database.new('github-pull-request-score/github.db')
-db.execute('drop table pull_requests')
 db.execute(
 <<SQL
 create table if not exists pull_requests (
