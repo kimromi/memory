@@ -53,8 +53,6 @@ begin
     end
     page = page + 1
   end
-rescue => e
-  p e
 end
 
 db.close
