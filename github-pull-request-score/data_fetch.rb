@@ -1,8 +1,9 @@
-require 'octokit'
+require 'pry'
 require 'dotenv'
-require 'sqlite3'
-require "pry"
 Dotenv.load
+
+require 'octokit'
+require 'sqlite3'
 
 Octokit.configure do |c|
   c.api_endpoint = ENV['API_ENDPOINT']
