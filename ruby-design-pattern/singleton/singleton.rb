@@ -3,7 +3,7 @@
 
 class Singleton
   class << self
-    def get_instance
+    def instance
       @@instance ||= new
     end
 
