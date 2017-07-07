@@ -1,0 +1,4 @@
+development:
+  message: hello! development
+production:
+  message: hello! production
