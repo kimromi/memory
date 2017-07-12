@@ -5,4 +5,8 @@ class SugarWater
     @water = water
     @sugar = sugar
   end
+
+  def add_material(sugar_amount)
+    @sugar += sugar_amount
+  end
 end
