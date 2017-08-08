@@ -1,0 +1,12 @@
+{
+  "name": "admin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "vendor:copy": "bin/vendor_copy"
+  },
+  "dependencies": {
+    "admin-lte": "^2.3.11"
+  }
+}

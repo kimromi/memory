@@ -2,3 +2,6 @@
 # yarn lockfile v1
 
 
+admin-lte@^2.3.11:
+  version "2.3.11"
+  resolved "https://registry.yarnpkg.com/admin-lte/-/admin-lte-2.3.11.tgz#da56dcd34d42e9ef1af362be15520a053a9d43db"
