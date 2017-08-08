@@ -4,6 +4,10 @@
   .box-body
     = form_for @employee, html: {class: 'form-horizontal'} do |f|
       .form-group
+        = f.label :id, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :id, class: 'form-control', disabled: true
+      .form-group
         = f.label :email, class: 'col-sm-2 control-label'
         .col-sm-10
           = f.email_field :email, class: 'form-control', disabled: true

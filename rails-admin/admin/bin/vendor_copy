@@ -10,3 +10,8 @@ cp node_modules/admin-lte/dist/css/AdminLTE.min.css $css_out/admin-lte.min.css
 cp node_modules/admin-lte/dist/css/skins/skin-blue.min.css $css_out
 cp node_modules/admin-lte/bootstrap/js/bootstrap.min.js $js_out
 cp node_modules/admin-lte/dist/js/app.min.js $js_out/admin-lte.min.js
+
+# vue
+cp node_modules/vue/dist/vue.min.js $js_out
+cp node_modules/axios/dist/axios.min.js $js_out
+

@@ -1,24 +1,31 @@
 - provide(:title, "権限設定")
 
-.box
-  .box-body
-    table.table
-      thead
-        tr
-          th id
-          th email
-          th role
-          th
-      tbody
-        - @employees.each do |employee|
+#vue-employees
+  .box
+    .box-body
+      form :submit.prevent
+        input.form-control type="text" placeholder='Search...' v-model='keyword'
+      table.table#vue-employees
+        thead
           tr
-            td = employee.id
-            td = employee.email
-            td = employee.role
+            th.col-xs-1 id
+            th.col-xs-3 email
+            th.col-xs-2 role
+            th.col-xs-offset-4
+            th.col-xs-1
+            th.col-xs-1
+        tbody
+          tr v-for="employee in employees" v-if="employee.display"
             td
-              = link_to employee
-                button.btn.btn-success.btn-sm edit
+              | {{ employee.id }}
             td
-              - unless current_employee.id == employee.id
-                = link_to employee, method: :delete, data: {confirm: 'Are you sure?'}
-                  button.btn.btn-danger.btn-sm delete
+              | {{ employee.email }}
+            td
+              | {{ employee.role }}
+            td
+            td
+              a :href="editUrl(employee.id)"
+                button.btn.btn-success.btn-sm Edit
+            td
+              a :href="editUrl(employee.id)" data-method="delete" data-confirm="Are You Sure?"
+                button.btn.btn-danger.btn-sm Delete

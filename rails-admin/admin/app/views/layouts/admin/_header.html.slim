@@ -2,9 +2,22 @@ header.main-header
   a.logo href="/admin"
     | Test Admin
   nav.navbar.navbar-static-top role="navigation"
-    ul.nav.navbar-nav.navbar-custom-menu
-      li.nav-item.dropdown
-        a.nav-link.dropdown-toggle href="#" id="navbar-user-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-          = current_employee.email
-        .dropdown-menu aria-labelledby="navbar-user-link"
-          = link_to 'ログアウト', '/employees/sign_out', class: 'dropdown-item'
+    .navbar-custom-menu
+      ul.nav.navbar-nav
+        li.dropdown.user.user-menu
+          a.dropdown-toggle href="#" id="navbar-user-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            i.fa.fa-user
+          ul.dropdown-menu role="menu" aria-labelledby="navbar-user-link"
+            li.user-header
+              p
+                i.fa.fa-user-circle-o.fa-4x
+              p
+                = current_employee.email
+                small
+                  | Sign in at
+                small
+                  = current_employee.current_sign_in_at.in_time_zone('Asia/Tokyo').strftime('%F %T')
+            li.user-footer
+              .pull-right
+                = link_to '/employees/sign_out', class: 'dropdown-item'
+                  button.btn.btn-default logout

@@ -3,7 +3,6 @@ html
   head
     title #{yield(:title)} | Admin
     = stylesheet_link_tag "admin/application", media: "all"
-    = javascript_include_tag "admin/application"
     = csrf_meta_tags
   body.skin-blue
     .wrapper
@@ -18,3 +17,4 @@ html
           h1 = yield(:title)
         section.content
           = yield
+    = javascript_include_tag "admin/application"

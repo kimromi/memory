@@ -7,6 +7,8 @@
     "vendor:copy": "bin/vendor_copy"
   },
   "dependencies": {
-    "admin-lte": "^2.3.11"
+    "admin-lte": "^2.3.11",
+    "axios": "^0.16.2",
+    "vue": "^2.4.2"
   }
 }
