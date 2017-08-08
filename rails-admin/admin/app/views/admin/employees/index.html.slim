@@ -15,4 +15,5 @@
             td = employee.email
             td
               - unless current_employee.id == employee.id
-                = link_to 'delete', employee, method: :delete, data: {confirm: 'Are you sure?'}
+                = link_to employee, method: :delete, data: {confirm: 'Are you sure?'}
+                  button.btn.btn-danger.btn-sm delete
