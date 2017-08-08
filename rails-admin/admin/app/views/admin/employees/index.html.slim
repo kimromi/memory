@@ -1,0 +1,18 @@
+- provide(:title, "権限設定")
+
+.box
+  .box-body
+    table.table
+      thead
+        tr
+          th id
+          th email
+          th
+      tbody
+        - @employees.each do |employee|
+          tr
+            td = employee.id
+            td = employee.email
+            td
+              - unless current_employee.id == employee.id
+                = link_to 'delete', employee, method: :delete, data: {confirm: 'Are you sure?'}

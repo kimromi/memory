@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Admin
+    title #{yield(:title)} | Admin
     = stylesheet_link_tag "admin/application", media: "all"
     = javascript_include_tag "admin/application"
     = csrf_meta_tags
@@ -19,4 +19,11 @@ html
                 = link_to 'ログアウト', '/employees/sign_out', method: :delete, class: 'dropdown-item'
       = render 'layouts/admin/sidebar'
       .content-wrapper
-        = yield
+        section.content-header
+          - flash.each do |key, value|
+            - key = "info" if key == "notice"
+            - key = "danger"  if key == "alert"
+            = content_tag :div, value, class: "alert alert-#{key}"
+          h1 = yield(:title)
+        section.content
+          = yield
