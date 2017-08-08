@@ -7,12 +7,17 @@
         tr
           th id
           th email
+          th role
           th
       tbody
         - @employees.each do |employee|
           tr
             td = employee.id
             td = employee.email
+            td = employee.role
+            td
+              = link_to employee
+                button.btn.btn-success.btn-sm edit
             td
               - unless current_employee.id == employee.id
                 = link_to employee, method: :delete, data: {confirm: 'Are you sure?'}

@@ -1,0 +1,16 @@
+- provide(:title, "権限設定")
+
+.box
+  .box-body
+    = form_for @employee, html: {class: 'form-horizontal'} do |f|
+      .form-group
+        = f.label :email, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.email_field :email, class: 'form-control', disabled: true
+      .form-group
+        = f.label :role, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.select :role, Employee.roles.keys.to_a, {}, class: 'form-control'
+      .pull-right.btn-toolbar
+        button.btn.btn-lg.btn-success Update
+        = link_to 'Back', employees_path, class: 'btn btn-lg btn-default'

@@ -8,5 +8,5 @@ aside.main-sidebar
             span.pull-right-container
               i.fa.fa-angle-left.pull-right
           ul.treeview-menu
-            li[class="#{request.fullpath == '/admin/employees' ? 'active' : ''}"]
+            li[class="#{request.fullpath =~ /^\/admin\/employees/ ? 'active' : ''}"]
               = link_to '権限設定', employees_path
