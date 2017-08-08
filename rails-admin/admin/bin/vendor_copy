@@ -6,7 +6,7 @@ mkdir -p $js_out
 
 # admin-lte
 cp node_modules/admin-lte/bootstrap/css/bootstrap.min.css $css_out
-cp node_modules/admin-lte/dist/css/AdminLTE.min.css $css_out
+cp node_modules/admin-lte/dist/css/AdminLTE.min.css $css_out/admin-lte.min.css
 cp node_modules/admin-lte/dist/css/skins/skin-blue.min.css $css_out
 cp node_modules/admin-lte/bootstrap/js/bootstrap.min.js $js_out
 cp node_modules/admin-lte/dist/js/app.min.js $js_out/admin-lte.min.js
