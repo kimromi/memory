@@ -16,7 +16,7 @@ html
               a.nav-link.dropdown-toggle href="#" id="navbar-user-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                 = current_employee.email
               .dropdown-menu aria-labelledby="navbar-user-link"
-                = link_to 'ログアウト', '/employees/sign_out', method: :delete, class: 'dropdown-item'
+                = link_to 'ログアウト', '/employees/sign_out', class: 'dropdown-item'
       = render 'layouts/admin/sidebar'
       .content-wrapper
         section.content-header
