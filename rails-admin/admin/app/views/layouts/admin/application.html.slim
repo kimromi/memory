@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title Admin
+    = stylesheet_link_tag "admin/application", media: "all"
+    = csrf_meta_tags
+  body.skin-blue
+    .wrapper
+      header.main-header
+        a.logo href="/admin"
+          | Test Admin
+        nav.navbar.navbar-static-top role="navigation"
+          ul.nav.navbar-nav.navbar-custom-menu
+            li.nav-item.dropdown
+              a.nav-link.dropdown-toggle href="#" id="navbar-user-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                = current_employee.email
+              .dropdown-menu aria-labelledby="navbar-user-link"
+                = link_to 'ログアウト', '/employees/sign_out', method: :delete, class: 'dropdown-item'
+      = yield
+    = javascript_include_tag "admin/application"
