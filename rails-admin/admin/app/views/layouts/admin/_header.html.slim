@@ -1,0 +1,10 @@
+header.main-header
+  a.logo href="/admin"
+    | Test Admin
+  nav.navbar.navbar-static-top role="navigation"
+    ul.nav.navbar-nav.navbar-custom-menu
+      li.nav-item.dropdown
+        a.nav-link.dropdown-toggle href="#" id="navbar-user-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          = current_employee.email
+        .dropdown-menu aria-labelledby="navbar-user-link"
+          = link_to 'ログアウト', '/employees/sign_out', class: 'dropdown-item'
