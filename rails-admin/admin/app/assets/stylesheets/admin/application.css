@@ -2,6 +2,7 @@
  *= require vendor/bootstrap.min
  *= require vendor/admin-lte.min
  *= require vendor/skin-blue.min
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */

@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.2.9"
   s.add_dependency "slim-rails"
+  s.add_dependency 'font-awesome-rails'
 
   s.add_development_dependency "sqlite3"
 end
