@@ -2,6 +2,8 @@ require_dependency "admin/application_controller"
 
 module Admin
   class EmployeesController < ApplicationController
+    authorize_resource
+
     def index
       @employees = Employee.all
     end
