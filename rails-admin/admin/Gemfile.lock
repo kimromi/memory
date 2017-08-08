@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     admin (0.0.1)
+      cancancan
       font-awesome-rails
       rails (~> 4.2.9)
       slim-rails
@@ -45,6 +46,7 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.4)
     builder (3.2.3)
+    cancancan (2.0.0)
     concurrent-ruby (1.0.5)
     erubis (2.7.0)
     font-awesome-rails (4.7.0.2)
