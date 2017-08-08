@@ -3,6 +3,7 @@ html
   head
     title Admin
     = stylesheet_link_tag "admin/application", media: "all"
+    = javascript_include_tag "admin/application"
     = csrf_meta_tags
   body.skin-blue
     .wrapper
@@ -16,5 +17,6 @@ html
                 = current_employee.email
               .dropdown-menu aria-labelledby="navbar-user-link"
                 = link_to 'ログアウト', '/employees/sign_out', method: :delete, class: 'dropdown-item'
-      = yield
-    = javascript_include_tag "admin/application"
+      = render 'layouts/admin/sidebar'
+      .content-wrapper
+        = yield
