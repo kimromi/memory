@@ -1,0 +1,32 @@
+{
+  "name": "vue-on-rails",
+  "private": true,
+  "scripts": {
+    "webpack": "webpack",
+    "webpack:watch": "webpack --watch",
+    "test": "ava"
+  },
+  "dependencies": {
+    "vue": "^2.4.2"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "webpack": "^3.5.5"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "ava": {
+    "files": [
+      "frontend/test/*.js"
+    ],
+    "require": [
+      "babel-core/register"
+    ]
+  }
+}
