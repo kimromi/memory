@@ -1,11 +1,13 @@
+const ManifestPlugin = require('webpack-manifest-plugin');
+
 module.exports = {
   context: __dirname + '/frontend/src/',
   entry: {
-    js: "./entry.js"
+    app: "./entry.js"
   },
   output: {
     path: __dirname + '/app/assets/javascripts/',
-    filename: "app.js"
+    filename: "[name].js"
   },
   resolve: {
     alias: {
@@ -20,5 +22,8 @@ module.exports = {
         loader: 'babel-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new ManifestPlugin()
+  ],
 }

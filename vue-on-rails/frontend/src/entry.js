@@ -7,7 +7,7 @@ export default new Vue({
   },
   methods: {
     shout: function () {
-      this.message = 'hello!!!!!!!!!!';
+      this.message = 'hello!!!!!!!!!!!';
     }
   }
 });

@@ -23,3 +23,6 @@
 .byebug_history
 
 app/assets/javascripts
+/public/assets
+/public/packs
+/node_modules
