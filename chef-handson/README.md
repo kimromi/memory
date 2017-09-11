@@ -76,7 +76,7 @@ $ touch .chef/knife.rb
 
 .chef/knife.rb
 
-```
+```ruby
 cookbook_path ["cookbooks", "vendor/cookbooks"]
 role_path     "roles"
 data_bag_path "data_bags"
@@ -119,3 +119,86 @@ $ bundle exec knife zero converge 'name:chef1.example' -a knife_zero.host
 192.168.33.99 Running handlers complete
 192.168.33.99 Chef Client finished, 0/0 resources updated in 01 seconds
 ```
+
+## Berkshelfで外部のcookbookを使おう
+
+### Berkshelfのインストール
+
+Gemfileに以下を追記してbundle install
+
+```
+gem 'berkshelf'
+```
+
+### Gitのcookbookをいれる
+
+Berksfile
+
+```
+source "https://supermarket.chef.io"
+
+cookbook 'git'
+```
+
+berks vendor <path>コマンドでいれる
+
+```
+$ bundle exec berks vendor vendor/cookbooks
+```
+
+### run listにレシピを追加
+
+```sh
+# bundle exec knife node run_list add <node> '<recipe>'
+
+% bundle exec knife node run_list add chef1.example 'recipe[git]'
+chef1.example:
+  run_list: recipe[git]
+```
+
+まだGitない
+
+```sh
+% ssh 192.168.33.99
+Last login: Mon Sep 11 08:29:50 2017 from 10.0.2.2
+[vagrant@chef1 ~]$ git
+-bash: git: command not found
+```
+
+### convergeしてみる
+
+```sh
+$ bundle exec knife zero converge 'name:chef1.example' -a knife_zero.host
+192.168.33.99 Starting Chef Client, version 13.3.42
+192.168.33.99 resolving cookbooks for run list: ["git"]
+192.168.33.99 Synchronizing Cookbooks:
+192.168.33.99   - git (8.0.0)
+192.168.33.99   - build-essential (8.0.3)
+192.168.33.99   - homebrew (4.2.0)
+192.168.33.99   - seven_zip (2.0.2)
+192.168.33.99   - mingw (2.0.1)
+192.168.33.99   - ohai (5.2.0)
+192.168.33.99   - windows (3.1.2)
+192.168.33.99 Installing Cookbook Gems:
+192.168.33.99 Compiling Cookbooks...
+192.168.33.99 Converging 1 resources
+192.168.33.99 Recipe: git::package
+192.168.33.99   * git_client[default] action install
+192.168.33.99     * yum_package[default :create git] action install
+192.168.33.99       - install version 1.8.3.1-6.el7_2.1 of package git
+192.168.33.99
+192.168.33.99
+192.168.33.99 Running handlers:
+192.168.33.99 Running handlers complete
+192.168.33.99 Chef Client finished, 2/2 resources updated in 16 seconds
+```
+
+Gitがインストールされた！
+
+```sh
+$ ssh 192.168.33.99
+Last login: Mon Sep 11 10:03:45 2017 from 10.0.2.2
+[vagrant@chef1 ~]$ git --version
+git version 1.8.3.1
+```
+
