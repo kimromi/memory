@@ -23,7 +23,7 @@ Gemfile
 # frozen_string_literal: true
 source "https://rubygems.org"
 
-gem 'chef'
+gem 'chef', '~> 12.21.4'   # Chef13だとうまく動かないので今回12で...
 gem 'knife-zero'
 ```
 
@@ -83,6 +83,7 @@ data_bag_path "data_bags"
 #encrypted_data_bag_secret "secret_data_bag_key"
 
 knife[:use_sudo] = true
+knife[:ssh_user] = 'vagrant'
 ```
 
 ## knife zero bootstrap <host>
@@ -151,7 +152,7 @@ $ bundle exec berks vendor vendor/cookbooks
 ```sh
 # bundle exec knife node run_list add <node> '<recipe>'
 
-% bundle exec knife node run_list add chef1.example 'recipe[git]'
+$ bundle exec knife node run_list add chef1.example 'recipe[git]'
 chef1.example:
   run_list: recipe[git]
 ```
@@ -202,3 +203,66 @@ Last login: Mon Sep 11 10:03:45 2017 from 10.0.2.2
 git version 1.8.3.1
 ```
 
+### その他
+
+メジャーなcookbookのソースは[https://github.com/chef-cookbooks](https://github.com/chef-cookbooks)にある
+
+## Railsをいれるぞ！
+
+### rbenvをつかってRubyをいれてみよう
+
+Berksfileに以下を追記して`bundle exec berks vendor vendor/cookbooks`する
+
+```ruby
+cookbook 'ruby_build'
+cookbook 'ruby_rbenv', '~> 1.2.0'
+```
+
+#### Roleを作成しよう
+
+```
+$ bundle exec knife role create ruby
+```
+
+エディタが立ち上がるので以下のように修正してください
+
+```json
+{
+  "name": "ruby",
+  "description": "install ruby",
+  "default_attributes": {
+    "rbenv": {
+      "rubies": [
+        "2.4.1"
+      ],
+      "global": "2.4.1"
+    }
+  },
+  "run_list": [
+    "recipe[ruby_build]",
+    "recipe[ruby_rbenv::system]"
+  ]
+}
+```
+
+#### run listにroleを追加してconverge
+
+```sh
+$ bundle exec knife node run_list add chef1.example 'role[ruby]'
+chef1.example:
+  run_list:
+    recipe[git]
+    role[ruby]
+$ bundle exec knife zero converge 'name:chef1.example' -a knife_zero.host
+
+...
+```
+
+Rubyはいった！
+
+```sh
+$ ssh 192.168.33.99
+Last login: Mon Sep 11 12:10:45 2017 from 10.0.2.2
+[vagrant@chef1 ~]$ ruby -v
+ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
+```

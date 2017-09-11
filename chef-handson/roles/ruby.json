@@ -1,0 +1,16 @@
+{
+  "name": "ruby",
+  "description": "install ruby",
+  "default_attributes": {
+    "rbenv": {
+      "rubies": [
+        "2.4.1"
+      ],
+      "global": "2.4.1"
+    }
+  },
+  "run_list": [
+    "recipe[ruby_build]",
+    "recipe[ruby_rbenv::system]"
+  ]
+}
