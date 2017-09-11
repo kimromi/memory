@@ -1,0 +1,4 @@
+.bundle/
+clients/
+vendor/
+.vagrant/
