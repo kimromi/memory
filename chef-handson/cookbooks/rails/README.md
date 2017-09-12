@@ -1,4 +1,4 @@
-# nginx Cookbook
+# rails Cookbook
 
 TODO: Enter the cookbook description here.
 
@@ -20,14 +20,14 @@ e.g.
 
 ### Cookbooks
 
-- `toaster` - nginx needs toaster to brown your bagel.
+- `toaster` - rails needs toaster to brown your bagel.
 
 ## Attributes
 
 TODO: List your cookbook attributes here.
 
 e.g.
-### nginx::default
+### rails::default
 
 <table>
   <tr>
@@ -37,7 +37,7 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['nginx']['bacon']</tt></td>
+    <td><tt>['rails']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -46,18 +46,18 @@ e.g.
 
 ## Usage
 
-### nginx::default
+### rails::default
 
 TODO: Write usage instructions for each cookbook.
 
 e.g.
-Just include `nginx` in your node's `run_list`:
+Just include `rails` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[nginx]"
+    "recipe[rails]"
   ]
 }
 ```

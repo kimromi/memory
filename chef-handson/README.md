@@ -235,7 +235,14 @@ $ bundle exec knife role create ruby
       "rubies": [
         "2.4.1"
       ],
-      "global": "2.4.1"
+      "global": "2.4.1",
+      "gems": {
+        "2.4.1": [
+          {
+            "name": "bundler"
+          }
+        ]
+      }
     }
   },
   "run_list": [
@@ -267,7 +274,7 @@ Last login: Mon Sep 11 12:10:45 2017 from 10.0.2.2
 ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
 ```
 
-### Nginx入れる！
+### Railsいれていく
 
 Berksfileに以下を追記して`bundle exec berks vendor vendor/cookbooks`する
 
@@ -278,30 +285,60 @@ cookbook 'yum-epel'
 自作のcookbookを作成していきます
 
 ```sh
-$ bundle exec knife cookbook create nginx -o cookbooks
+$ bundle exec knife cookbook create rails -o cookbooks
 ```
 
-cookbooks/nginx/ に色々ディレクトリができる
+cookbooks/rails/ に色々ディレクトリができる
 
 
-cookbooks/nginx/recipes/default.rb
+cookbooks/rails/recipes/default.rb
 
 ```ruby
 include_recipe 'yum-epel'
 
+# nginx
 package 'nginx' do
   action :install
 end
-
 service 'nginx' do
   action [:enable, :start]
 end
+
+# for Rails
+directory '/var/www/rails' do
+  mode '775'
+  owner 'vagrant'
+  group 'vagrant'
+  recursive true
+end
+
+# for sqlite3
+package 'sqlite-devel'
+
+# for uglifier
+remote_file "#{Chef::Config[:file_cache_path]}/http-parser-2.7.1-3.el7.x86_64.rpm" do
+  source "https://kojipkgs.fedoraproject.org//packages/http-parser/2.7.1/3.el7/x86_64/http-parser-2.7.1-3.el7.x86_64.rpm"
+  not_if "rpm -qa | grep -q '^http-parser'"
+  action :create
+  notifies :install, "rpm_package[http-parser]", :immediately
+end
+rpm_package "http-parser" do
+  source "#{Chef::Config[:file_cache_path]}/http-parser-2.7.1-3.el7.x86_64.rpm"
+  action :nothing
+end
+package 'nodejs'
 ```
 
-convergeする
+run listを追加してconvergeする
 
 ```sh
-$ bundle exec knife node run_list add chef1.example 'recipe[nginx]'
+$ bundle exec knife node run_list add chef1.example 'recipe[rails]'
+chef1.example:
+  run_list:
+    recipe[git]
+    role[ruby]
+    recipe[rails]
+$ bundle exec knife zero converge 'name:chef1.example' -a knife_zero.host
 ```
 
 Nginx入った
@@ -312,3 +349,13 @@ nginx version: nginx/1.10.2
 ```
 
 この時点で[http://192.168.33.99/](http://192.168.33.99/)にアクセスするとnginxが起動しているのがわかる！
+
+### Railsアプリ
+
+サンプルのRails(5.1.4)を用意しました。適当にcloneしてください  
+https://github.com/kimromi/chef-handson-rails
+
+```sh
+$ bundle install --path vendor/bundle
+$ bundle exec cap production deploy
+```
