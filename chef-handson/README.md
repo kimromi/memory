@@ -357,5 +357,80 @@ https://github.com/kimromi/chef-handson-rails
 
 ```sh
 $ bundle install --path vendor/bundle
+$ bundle exec cap production puma:config  # puma用の設定ファイルをアップ
 $ bundle exec cap production deploy
 ```
+
+puma起動した
+
+```sh
+$ ssh 192.168.33.99
+Last login: Tue Sep 12 11:04:36 2017 from 10.0.2.2
+[vagrant@chef1 ~]$ ps aux | grep pum[a]
+vagrant  28104  0.6  6.3 574444 64780 ?        Sl   11:01   0:01 puma 3.10.0 (unix:///var/www/rails/shared/tmp/sockets/puma.sock)
+```
+
+### Nginxとpumaをつなぐ
+
+cookbooks/rails/attributes/default.rb
+
+```ruby
+default['rails']['app_directory'] = '/var/www/rails'
+default['rails']['fqdn'] = 'chef1.example'
+```
+
+cookbooks/rails/templates/default/chef1.exapmle.conf.erb
+
+```ruby
+upstream puma {
+    server unix://<%= node['rails']['app_directory'] %>/shared/tmp/sockets/puma.sock;
+}
+
+server {
+    listen       80;
+    server_name  <%= node['rails']['fqdn'] %>;
+    root         <%= node['rails']['app_directory'] %>/current/public;
+
+    location / {
+        try_files $uri $uri/index.html $uri.html @webapp;
+    }
+
+    location @webapp {
+        proxy_read_timeout 300;
+        proxy_connect_timeout 300;
+        proxy_redirect off;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_pass http://puma;
+    }
+}
+```
+
+cookbooks/rails/recipes/default.rb に追記
+
+```ruby
+# chef1.example用のnginx設定
+template "/etc/nginx/conf.d/chef1.example.conf" do
+  source 'chef1.example.conf.erb'
+  owner 'root'
+  group 'root'
+  mode 0644
+  notifies :restart, 'service[nginx]'
+end
+```
+
+converge
+
+```sh
+$ bundle exec knife zero converge 'name:chef1.example' -a knife_zero.host
+```
+
+
+macの/etc/hosts
+
+```
+192.168.33.99 chef1.example
+```
+
+[http://chef1.example](http://chef1.example)でみれるのでは？

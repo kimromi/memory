@@ -40,3 +40,13 @@ rpm_package "http-parser" do
   action :nothing
 end
 package 'nodejs'
+
+# chef1.exapmle用のnginx設定
+template "/etc/nginx/conf.d/chef1.example.conf" do
+  source 'chef1.example.conf.erb'
+  owner 'root'
+  group 'root'
+  mode 0644
+  notifies :restart, 'service[nginx]'
+end
+
