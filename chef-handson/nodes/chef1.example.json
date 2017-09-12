@@ -1,5 +1,6 @@
 {
   "name": "chef1.example",
+  "chef_environment": "production",
   "normal": {
     "knife_zero": {
       "host": "192.168.33.99"
@@ -231,7 +232,7 @@
     },
     "rails": {
       "app_directory": "/var/www/rails",
-      "fqdn": "chef1.example"
+      "fqdn": "chef1.production"
     }
   },
   "automatic": {
@@ -308,13 +309,13 @@
     "filesystem": {
       "/dev/mapper/centos-root": {
         "kb_size": "39265556",
-        "kb_used": "1988792",
-        "kb_available": "37276764",
+        "kb_used": "1988860",
+        "kb_available": "37276696",
         "percent_used": "6%",
         "mount": "/",
         "total_inodes": "39284736",
-        "inodes_used": "73200",
-        "inodes_available": "39211536",
+        "inodes_used": "73205",
+        "inodes_available": "39211531",
         "inodes_percent_used": "1%",
         "fs_type": "xfs",
         "mount_options": [
@@ -393,8 +394,8 @@
       },
       "vagrant": {
         "kb_size": "487276544",
-        "kb_used": "132708216",
-        "kb_available": "354568328",
+        "kb_used": "131721420",
+        "kb_available": "355555124",
         "percent_used": "28%",
         "mount": "/vagrant",
         "total_inodes": "1000",
@@ -807,9 +808,9 @@
     },
     "memory": {
       "swap": {
-        "cached": "2072kB",
+        "cached": "2168kB",
         "total": "2097148kB",
-        "free": "2090472kB"
+        "free": "2090388kB"
       },
       "hugepages": {
         "total": "0",
@@ -818,23 +819,23 @@
         "surplus": "0"
       },
       "total": "1016860kB",
-      "free": "206848kB",
+      "free": "224992kB",
       "buffers": "0kB",
-      "cached": "393120kB",
-      "active": "345924kB",
-      "inactive": "241972kB",
-      "dirty": "28kB",
+      "cached": "367604kB",
+      "active": "266328kB",
+      "inactive": "299064kB",
+      "dirty": "20kB",
       "writeback": "0kB",
-      "anon_pages": "192776kB",
-      "mapped": "23300kB",
-      "slab": "178804kB",
-      "slab_reclaimable": "141836kB",
-      "slab_unreclaim": "36968kB",
-      "page_tables": "4800kB",
+      "anon_pages": "195640kB",
+      "mapped": "24032kB",
+      "slab": "182188kB",
+      "slab_reclaimable": "144900kB",
+      "slab_unreclaim": "37288kB",
+      "page_tables": "5244kB",
       "nfs_unstable": "0kB",
       "bounce": "0kB",
       "commit_limit": "2605576kB",
-      "committed_as": "539908kB",
+      "committed_as": "546564kB",
       "vmalloc_total": "34359738367kB",
       "vmalloc_used": "10072kB",
       "vmalloc_chunk": "34359719420kB",
@@ -1068,15 +1069,15 @@
         "interfaces": {
           "lo": {
             "rx": {
-              "bytes": "10717182",
-              "packets": "4253",
+              "bytes": "11510002",
+              "packets": "4498",
               "errors": "0",
               "drop": "0",
               "overrun": "0"
             },
             "tx": {
-              "bytes": "10717182",
-              "packets": "4253",
+              "bytes": "11510002",
+              "packets": "4498",
               "errors": "0",
               "drop": "0",
               "carrier": "0",
@@ -1086,16 +1087,16 @@
           "enp0s3": {
             "tx": {
               "queuelen": "1000",
-              "bytes": "9148699",
-              "packets": "82188",
+              "bytes": "9368256",
+              "packets": "82781",
               "errors": "0",
               "drop": "0",
               "carrier": "0",
               "collisions": "0"
             },
             "rx": {
-              "bytes": "239815567",
-              "packets": "242133",
+              "bytes": "240791942",
+              "packets": "243298",
               "errors": "0",
               "drop": "0",
               "overrun": "0"
@@ -1104,16 +1105,16 @@
           "enp0s8": {
             "tx": {
               "queuelen": "1000",
-              "bytes": "127481",
-              "packets": "183",
+              "bytes": "139388",
+              "packets": "227",
               "errors": "0",
               "drop": "0",
               "carrier": "0",
               "collisions": "0"
             },
             "rx": {
-              "bytes": "339520",
-              "packets": "1654",
+              "bytes": "362405",
+              "packets": "1771",
               "errors": "0",
               "drop": "0",
               "overrun": "0"
@@ -1133,10 +1134,10 @@
     "platform": "centos",
     "platform_version": "7.2.1511",
     "platform_family": "rhel",
-    "uptime_seconds": 44430,
-    "uptime": "12 hours 20 minutes 30 seconds",
-    "idletime_seconds": 43780,
-    "idletime": "12 hours 09 minutes 40 seconds",
+    "uptime_seconds": 46398,
+    "uptime": "12 hours 53 minutes 18 seconds",
+    "idletime_seconds": 45736,
+    "idletime": "12 hours 42 minutes 16 seconds",
     "virtualization": {
       "systems": {
         "vbox": "guest"
@@ -1816,12 +1817,12 @@
       "by_device": {
         "/dev/mapper/centos-root": {
           "kb_size": "39265556",
-          "kb_used": "1988792",
-          "kb_available": "37276764",
+          "kb_used": "1988860",
+          "kb_available": "37276696",
           "percent_used": "6%",
           "total_inodes": "39284736",
-          "inodes_used": "73200",
-          "inodes_available": "39211536",
+          "inodes_used": "73205",
+          "inodes_available": "39211531",
           "inodes_percent_used": "1%",
           "fs_type": "xfs",
           "mount_options": [
@@ -1912,8 +1913,8 @@
         },
         "vagrant": {
           "kb_size": "487276544",
-          "kb_used": "132708216",
-          "kb_available": "354568328",
+          "kb_used": "131721420",
+          "kb_available": "355555124",
           "percent_used": "28%",
           "total_inodes": "1000",
           "inodes_used": "0",
@@ -2146,12 +2147,12 @@
       "by_mountpoint": {
         "/": {
           "kb_size": "39265556",
-          "kb_used": "1988792",
-          "kb_available": "37276764",
+          "kb_used": "1988860",
+          "kb_available": "37276696",
           "percent_used": "6%",
           "total_inodes": "39284736",
-          "inodes_used": "73200",
-          "inodes_available": "39211536",
+          "inodes_used": "73205",
+          "inodes_available": "39211531",
           "inodes_percent_used": "1%",
           "fs_type": "rootfs",
           "mount_options": [
@@ -2207,12 +2208,12 @@
         },
         "/run": {
           "kb_size": "508428",
-          "kb_used": "6708",
-          "kb_available": "501720",
+          "kb_used": "6712",
+          "kb_available": "501716",
           "percent_used": "2%",
           "total_inodes": "127107",
-          "inodes_used": "395",
-          "inodes_available": "126712",
+          "inodes_used": "396",
+          "inodes_available": "126711",
           "inodes_percent_used": "1%",
           "fs_type": "tmpfs",
           "mount_options": [
@@ -2273,8 +2274,8 @@
         },
         "/vagrant": {
           "kb_size": "487276544",
-          "kb_used": "132708216",
-          "kb_available": "354568328",
+          "kb_used": "131721420",
+          "kb_available": "355555124",
           "percent_used": "28%",
           "total_inodes": "1000",
           "inodes_used": "0",
@@ -2621,13 +2622,13 @@
         "/dev/mapper/centos-root,/": {
           "device": "/dev/mapper/centos-root",
           "kb_size": "39265556",
-          "kb_used": "1988792",
-          "kb_available": "37276764",
+          "kb_used": "1988860",
+          "kb_available": "37276696",
           "percent_used": "6%",
           "mount": "/",
           "total_inodes": "39284736",
-          "inodes_used": "73200",
-          "inodes_available": "39211536",
+          "inodes_used": "73205",
+          "inodes_available": "39211531",
           "inodes_percent_used": "1%",
           "fs_type": "xfs",
           "mount_options": [
@@ -2683,13 +2684,13 @@
         "tmpfs,/run": {
           "device": "tmpfs",
           "kb_size": "508428",
-          "kb_used": "6708",
-          "kb_available": "501720",
+          "kb_used": "6712",
+          "kb_available": "501716",
           "percent_used": "2%",
           "mount": "/run",
           "total_inodes": "127107",
-          "inodes_used": "395",
-          "inodes_available": "126712",
+          "inodes_used": "396",
+          "inodes_available": "126711",
           "inodes_percent_used": "1%",
           "fs_type": "tmpfs",
           "mount_options": [
@@ -2746,8 +2747,8 @@
         "vagrant,/vagrant": {
           "device": "vagrant",
           "kb_size": "487276544",
-          "kb_used": "132708216",
-          "kb_available": "354568328",
+          "kb_used": "131721420",
+          "kb_available": "355555124",
           "percent_used": "28%",
           "mount": "/vagrant",
           "total_inodes": "1000",
@@ -3157,8 +3158,8 @@
           "user": "vagrant",
           "seat": null
         },
-        "72": {
-          "session": "72",
+        "75": {
+          "session": "75",
           "uid": "1000",
           "user": "vagrant",
           "seat": null
@@ -3173,7 +3174,7 @@
             "seat": null
           },
           {
-            "session": "72",
+            "session": "75",
             "uid": "1000",
             "user": "vagrant",
             "seat": null
@@ -3181,7 +3182,7 @@
         ]
       }
     },
-    "ohai_time": 1505217071.1833239,
+    "ohai_time": 1505219039.1918628,
     "packages": {
       "dracut": {
         "epoch": "0",
@@ -6142,7 +6143,7 @@
       "ULONG_MAX": 18446744073709551615,
       "USHRT_MAX": 65535,
       "WORD_BIT": 32,
-      "_AVPHYS_PAGES": 49661,
+      "_AVPHYS_PAGES": 53463,
       "_NPROCESSORS_CONF": 1,
       "_NPROCESSORS_ONLN": 1,
       "_PHYS_PAGES": 254215,

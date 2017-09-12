@@ -434,3 +434,57 @@ macの/etc/hosts
 ```
 
 [http://chef1.example](http://chef1.example)でみれるのでは？
+
+## environmentを設定してみよう
+
+knife node environment setで設定できる
+
+```sh
+% bundle exec knife node environment set chef1.example production
+chef1.example:
+  chef_environment: production
+```
+
+production設定を追加する
+
+```sh
+% bundle exec knife environment create production
+```
+
+default_attributesに以下を追加
+
+```json
+  "default_attributes": {
+    "rails": {
+      "fqdn": "chef1.production"
+    }
+  }
+```
+
+こちらの方が設定が優先される
+
+```sh
+$ bundle exec knife zero converge 'name:chef1.example' -a knife_zero.host
+...
+192.168.33.99     -    server_name  chef1.example;
+192.168.33.99     +    server_name  chef1.production;
+```
+
+/etc/hosts
+
+```
+192.168.33.99 chef1.production
+```
+
+[http://chef1.production/](http://chef1.production/)で見れるようになっている
+
+### 参考: attributesの優先度
+
+基本的に以下の順で下に行くほど優先度が高い
+
+* cookbook attributes (cookbooks/rails/attributes/)
+* recipe (cookbooks/rails/recipes/ ※`node.default['rails']['fqdn'] = 'chef1.recipe'`みたいな書き方)
+* environments (environments/)
+* roles (roles/)
+
+[https://docs.chef.io/attributes.html#id1](https://docs.chef.io/attributes.html#id1)

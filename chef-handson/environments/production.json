@@ -1,0 +1,8 @@
+{
+  "name": "production",
+  "default_attributes": {
+    "rails": {
+      "fqdn": "chef1.production"
+    }
+  }
+}
