@@ -6,7 +6,7 @@
 
 * VirtualBox
 * Vagrant
-* ruby >= 2.4
+* ruby = 2.4.1
 
 ## 準備
 
@@ -266,3 +266,49 @@ Last login: Mon Sep 11 12:10:45 2017 from 10.0.2.2
 [vagrant@chef1 ~]$ ruby -v
 ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
 ```
+
+### Nginx入れる！
+
+Berksfileに以下を追記して`bundle exec berks vendor vendor/cookbooks`する
+
+```ruby
+cookbook 'yum-epel'
+```
+
+自作のcookbookを作成していきます
+
+```sh
+$ bundle exec knife cookbook create nginx -o cookbooks
+```
+
+cookbooks/nginx/ に色々ディレクトリができる
+
+
+cookbooks/nginx/recipes/default.rb
+
+```ruby
+include_recipe 'yum-epel'
+
+package 'nginx' do
+  action :install
+end
+
+service 'nginx' do
+  action [:enable, :start]
+end
+```
+
+convergeする
+
+```sh
+$ bundle exec knife node run_list add chef1.example 'recipe[nginx]'
+```
+
+Nginx入った
+
+```
+$ nginx -v
+nginx version: nginx/1.10.2
+```
+
+この時点で[http://192.168.33.99/](http://192.168.33.99/)にアクセスするとnginxが起動しているのがわかる！
