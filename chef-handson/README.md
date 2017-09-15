@@ -31,6 +31,7 @@ gem 'knife-zero'
 $ bundle install --path vendor/bundle
 $ bundle exec chef-client -v
 $ bundle exec knife -v
+$ mkdir cookbooks environments data_bags roles nodes
 ```
 
 こんな感じのディレクトリ構成になる
@@ -77,6 +78,7 @@ $ touch .chef/knife.rb
 .chef/knife.rb
 
 ```ruby
+local_mode true
 cookbook_path ["cookbooks", "vendor/cookbooks"]
 role_path     "roles"
 data_bag_path "data_bags"
