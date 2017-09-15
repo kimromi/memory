@@ -228,6 +228,8 @@ $ bundle exec knife role create ruby
 
 エディタが立ち上がるので以下のように修正してください
 
+エディタが立ち上がらないときは`export EDITOR=vim`とかでエディタを設定してください
+
 ```json
 {
   "name": "ruby",
