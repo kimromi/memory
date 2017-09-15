@@ -361,7 +361,6 @@ https://github.com/kimromi/chef-handson-rails
 
 ```sh
 $ bundle install --path vendor/bundle
-$ bundle exec cap production puma:config  # puma用の設定ファイルをアップ
 $ bundle exec cap production deploy
 ```
 
