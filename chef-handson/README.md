@@ -359,9 +359,16 @@ nginx version: nginx/1.10.2
 サンプルのRails(5.1.4)を用意しました。適当にcloneしてください  
 https://github.com/kimromi/chef-handson-rails
 
-```sh
+```
 $ bundle install --path vendor/bundle
 $ bundle exec cap production deploy
+```
+
+鍵問題でデプロイ失敗するときは以下でssh-add
+
+```sh
+# vagrant上でgithub.comのcloneができるようにする
+$ ssh-add ~/.ssh/[github.comに接続している秘密鍵]
 ```
 
 puma起動した
