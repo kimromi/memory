@@ -1,0 +1,28 @@
+sqlite3 test.db '
+drop table if exists people;
+create table people(
+  id integer not null primary key autoincrement,
+  name text,
+  created_at datetime,
+  updated_at datetime
+);
+
+drop table if exists orders;
+create table orders(
+  id integer not null primary key autoincrement,
+  person_id integer not null,
+  item_name text,
+  price numeric,
+  tax numeric,
+  created_at datetime
+);
+
+drop table if exists payments;
+create table payments(
+  id integer not null primary key autoincrement,
+  order_id integer not null,
+  person_id integer not null,
+  amount numeric,
+  created_at datetime
+);
+'
