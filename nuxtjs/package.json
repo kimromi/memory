@@ -2,7 +2,7 @@
   "name": "nuxtjs",
   "private": true,
   "scripts": {
-    "dev": "nuxt"
+    "dev": "nuxt -p 4000"
   },
   "dependencies": {
     "nuxt": "^1.4.0"
