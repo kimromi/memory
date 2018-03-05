@@ -2,9 +2,17 @@
   "name": "nuxtjs",
   "private": true,
   "scripts": {
-    "dev": "nuxt -p 4000"
+    "build:server": "cd server && webpack-cli",
+    "dev": "npm run build:server && node ./server"
   },
   "dependencies": {
-    "nuxt": "^1.4.0"
+    "@types/webpack": "^3.8.8",
+    "express": "^4.16.2",
+    "nuxt": "^1.4.0",
+    "ts-loader": "^4.0.1",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.7.2",
+    "webpack": "^4.1.0",
+    "webpack-cli": "^2.0.10"
   }
 }
