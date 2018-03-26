@@ -25,4 +25,3 @@ class Singleton
     @counter = @counter + 1
   end
 end
-
