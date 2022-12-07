@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@types/webpack": "^3.8.8",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "nuxt": "^1.4.0",
     "ts-loader": "^4.0.1",
     "ts-node": "^5.0.1",
